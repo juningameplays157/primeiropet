@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog & Cat</title>
+
+       <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body{
+            background-size: cover; /* 100% da area visivel sem deformar */
+            background-position: center;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-color: rgb(243, 238, 215);
+            background-attachment: fixed;
+            overflow-x: hidden;
+            
+        }  
+
+        .container{
+      
+            width: 80vw;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 2%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            
+        }
+
+        .content-cards-produto{
+            text-align: center;
+        }
+
+        .card-produto{
+            width: 200px;
+            height: 330px;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 25px;
+            background-color: white;
+            display: inline-block;
+            box-shadow: 3px 5px 10px rgba(0, 0, 0, .2);
+            margin: 10px;
+            margin-top: 20px;
+            transition: all 0.9s;
+        }
+
+        .card-produto img{
+            width: 200px;
+            height: 230px;
+            border-top-left-radius: 25px;
+            border-bottom: solid 1px rgb(233, 225, 225);
+        }
+
+        .card-produto:hover{
+            box-shadow: 4px 8px 20px rgba(0, 0, 0, .5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .body-card-produto h3{
+            font-family: "Ubuntu";
+            font-size: 22px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 25ch;
+            margin: 5px;
+            margin-top: 12px;
+        }
+
+        .body-card-produto label{
+        font-size: 16px;
+        color: rgb(221,26,26);
+        font-weight: bold;
+        margin: 5px;
+     }
+
+     .body-card-produto span{
+        color: rgb(179, 168, 168);
+        font-size: 14px;
+        margin: 5px;
+        text-decoration: line-through;
+     }
+
+     .body-card-produto button{
+            margin-top: 8px;
+            width: 100%;
+            background-color: rgb(8, 191, 204);
+            text-align: center;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 8px;
+            border: none;
+            box-shadow: 0px 5px 0px rgb(2, 131, 114);
+        }
+
+        .body-card-produto button:hover{
+            cursor: pointer;
+            background-color: rgb(7, 77, 134);
+            box-shadow: 0px 5px 0px rgb(4, 50, 150);
+        }
+
+        .body-card-produto button:active{
+            position: relative;
+            top: 5px;
+            box-shadow: none;
+        }
+
+                nav{
+            background-color: rgb(7, 143, 233);
+            display: flex;
+            width: 100vw;
+           
+        }
+        nav a {
+            color: white;
+            font-weight: bold;
+            padding-top: 21px;
+            padding-bottom: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+            text-decoration: none;
+        }
+        .link:hover{
+            background-color: rgba(159, 161, 28, 0.5);
+
+        }
+        .navbar{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: end;
+            
+        }
+
+        /* Imagem do logo */
+        .imglogo img{
+            width: px;
+            height: 90px;
+           /* position: fixed;*/
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        nav .ultimo-link{
+            margin-right: 10px;
+        }
+        nav .ultimo-link:hover{
+            background-color: rgba(65, 66, 11, 0.5);
+
+        }
+
+        .carousel{
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+        }
+
+            footer{
+            font-family:Arial;
+            font-size: small;
+            color:rgb(189, 189, 189);
+            background-color: rgb(7, 143, 233);
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 100px;
+            margin-top: 150px;
+        }
+
+        
+        .slides{
+            padding-top: 3%;
+            display: flex;
+            transition: transform 0.9s ease;
+        }
+        .slide{
+            width: 100vw;
+           /* height: 100vh;*/
+            flex-shrink: 0;
+        }
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        input[name="carousel"]{
+            display: none;
+        }
+        #slide1:checked ~ .slides{
+            transform: translateX(0vw);
+        }
+         #slide2:checked ~ .slides{
+            transform: translateX(-100vw);
+        }
+         #slide3:checked ~ .slides{
+            transform: translateX(-200vw);
+        }
+         #slide4:checked ~ .slides{
+            transform: translateX(-300vw);
+        }
+        .navegacao {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+           /* height: 320px;*/
+            text-align: center;
+        }
+        .navegacao label {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-color: rgb(214, 224, 233);
+            border-radius: 25%;
+            margin: 0 7px;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: solid 1px red;
+        }
+        input[name="carousel"]:checked + label {
+            background: white;
+        }
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+
+        .menu-icon div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+        @media screen and (max-width: 768px) {
+            .navbar {
+                display: none; /* menu sanduiche começa escondido para ser mostrado apenas quando clicado */
+                align-items: normal;
+                flex-direction: column;
+                width: 100%;
+                background-color: rgba(0,0,0,0.9);
+                position: absolute;
+                top: 70px;
+                left: 0;
+                z-index: 999;
+             
+            }
+
+            .navbar a {
+                padding: 15px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .menu-icon {
+                display: flex;
+                margin-left: auto;
+                padding-right: 15px;
+         
+            }
+
+            nav {
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        </style>
+</head>
+<body>
+    <header>
+        <nav>
+                <div class="imglogo">
+                    <img src="imagens/360_F_417507681_28hlGJQfPcgOgvRgQerohZP1k0W4HZ19-removebg-preview.png" alt="Logo">
+                </div>
+
+                <!--Add menu sanduíche-->
+                <div class="menu-icon" onclick="MostraEscondeMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+
+                <div class="navbar" id="navLinks"> <!--add id para o menu sanduiche-->
+                    <a href="#1" class="link">Home</a>
+                    <a href="#2" class="link">Pagina1</a>
+                    <a href="#3" class="ultimo-link">Pagina2</a>
+                </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section>
+            <div class="content-cards-produto">
+                <div class="card-produto">
+                    <img src="ip/1649967907605_mini.jpg">
+                    <div class="body-card-produto">
+                        <h3>Caixa de Transporte Furacão Pet Joy Marrom para Cães e Gatos</h3>
+                        <p>
+                            <label>R$ 50,99</label>
+                            <span> R$ 59,99</span>
+                            
+                        </p>
+                        <a href="https://www.petz.com.br/produto/caixa-de-transporte-furacao-pet-joy-marrom-para-caes-e-gatos-175248"><button type="button">Comprar</button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="content-cards-produto">
+                <div class="card-produto">
+                    <img src="ip/10037090000943-1_mini.jpg">
+                    <div class="body-card-produto">
+                        <h3>Cama Ferplast Siesta Deluxe Para Cães Pretos</h3>
+                        <p>
+                            <label>R$ 41,99</label>
+                            <span> R$ 139,99</span>
+                            
+                        </p>
+                        <a href="https://www.petz.com.br/produto/cama-ferplast-siesta-deluxe-para-caes-preto-85675"><button type="button">Comprar</button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="content-cards-produto">
+                <div class="card-produto">
+                    <img src="ip/1443800017859_mini.jpg">
+                    <div class="body-card-produto">
+                        <h3>Casa Furacão para Cães Azul</h3>
+                        <p>
+                            <label>R$ 50,99</label>
+                            <span> R$ 59,99</span>
+                            
+                        </p>
+                        <a href="https://www.petz.com.br/produto/casa-furacao-para-caes-azul-177410"><button type="button">Comprar</button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="content-cards-produto">
+                <div class="card-produto">
+                    <img src="ip/10037120002309_1748531813393_mini.jpg">
+                    <div class="body-card-produto">
+                        <h3>Comedouro Zee.Dog Melamina Marvel Hulk para Cães</h3>
+                        <p>
+                            <label>R$ 71,40</label>
+                            <span> R$ 119,09</span>
+                            
+                        </p>
+                        <a href="https://www.petz.com.br/produto/comedouro-zee-dog-melamina-marvel-hulk-para-caes-191938"><button type="button">Comprar</button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="content-cards-produto">
+                <div class="card-produto">
+                    <img src="ip/ração.jpg">
+                    <div class="body-card-produto">
+                        <h3>Areia Higiênica Pipicat Classic para Gatos</h3>
+                        <p>
+                            <label>R$ 15,99</label>
+                            <span> R$ 17,99</span>
+                            
+                        </p>
+                        <a href="https://www.petz.com.br/produto/areia-higienica-pipicat-classic-para-gatos-79747"><button type="button">Comprar</button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="carousel"> <!-- div pai inicio -->
+
+            <input type="radio" name="carousel" id="slide1" checked> <!-- seleciona o slide-->
+            <input type="radio" name="carousel" id="slide2" >
+            <input type="radio" name="carousel" id="slide3" >
+            <input type="radio" name="carousel" id="slide4" >
+        
+            
+
+        <!-- Slides do carousel-->
+        <div class="slides">
+            <div class="slide">
+                <img src="imagens/istockphoto-1277453154-612x612.jpg" alt="Slide 1">
+            </div>
+
+            <div class="slide">
+                <img src="imagens/istockphoto-1226989624-612x612.jpg" alt="Slide 2">
+            </div>
+
+            <div class="slide">
+                <img src="imagens/istockphoto-1188690349-612x612.jpg" alt="Slide 3">
+            </div>
+
+            <div class="slide">
+                <img src="imagens/istockphoto-1184062542-612x612.jpg" alt="Slide 4">
+            </div>
+        </div>
+
+        <!--Navegação-->
+        <div class="navegacao">
+            <label for="slide1"></label>
+            <label for="slide2"></label>
+            <label for="slide3"></label>
+            <label for="slide4"></label>
+        </div>
+
+    </div> <!-- div pai fim -->
+
+    <div class="container">
+        <section>
+            <div class="content-cards-produto">
+                <div class="card-produto">
+                    <img src="ie/bateria_premium_dx720_wr_vinho_28123_1_c513add2d0338d040ac3335e30a733b9.webp">
+                    <div class="body-card-produto">
+                        <h3>Bateria DX-72</h3>
+                        <p>
+                            <label>R$ 3607,72</label>
+                            <span> R$ 4512,99</span>
+                            
+                        </p>
+                        <button type="button">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        
+
+        <p></p>
+        <p>&copy;Todos os direitos reservados. </p>
+      </footer>
+    <script>
+        function MostraEscondeMenu() {
+            var nav = document.getElementById("navLinks");
+            if (nav.style.display === "flex") {
+                nav.style.display = "none";
+            } else {
+                nav.style.display = "flex";
+            }
+        }
+    </script>
+</body>
+</html>
